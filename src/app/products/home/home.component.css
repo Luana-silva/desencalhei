@@ -1,0 +1,134 @@
+.product {
+  padding: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: .2s linear;
+  box-shadow: 0px 1px 1px #d1d1d1;
+}
+
+.product-offert {
+  margin-bottom: 45px;
+}
+
+.product:hover {
+  background: var(--cinzadestaques);
+  box-shadow: -1px 4px 20px -1px #d1d1d1;
+}
+
+.product__figure {
+  margin-bottom: 20px;
+}
+
+.product__salesman {
+  color: #a2a2a2;
+  font-weight: lighter;
+  font-size: 1.8rem;
+}
+
+.product__name {
+  color: #747474;
+  font-weight: bold;
+  font-size: 1.9rem;
+}
+
+
+.product__favorite {
+  border: none;
+  background: transparent;
+  margin-bottom: 10px;
+}
+
+.product__favorite .fa-heart {
+  color: var(--corsalmao)
+}
+
+.product__price {
+  opacity: 0;
+  color: #8e8d95;
+  font-size: 2.2rem;
+  display: block;
+  font-weight:bold;
+}
+
+.product:hover .product__price {
+  opacity: 1;
+}
+
+
+.banner {
+  margin-top: 70px;
+  margin-bottom: 95px;
+}
+
+/* Interesses */
+.interests {
+  margin-bottom: 20px;
+}
+
+.interests__body {
+  margin-bottom: 190px;
+}
+
+.interests__tag {
+  margin-bottom: 20px;
+}
+
+.tags {
+  text-align: center;
+}
+
+.tag {
+  list-style: none;
+  float: left;
+  margin: 10px 18px;
+}
+
+.tag__btn {
+  border: none;
+  border-radius: 18px;
+  background: var(--tags);
+  height: 40px;
+  min-width: 80px;
+  display: block;
+  padding: 8px 15px;
+}
+
+.tag__item {
+  text-align: center;
+  color: var(--title);
+  font-size: 1.8rem;
+}
+
+/* Tutorial */
+.site-tutorial__figure {
+  margin-top: 145px;
+  text-align: center;
+}
+
+.site-tutorial__caption {
+  margin-top: 20px;
+}
+
+.site-tutorial__image {
+  width: 110px;
+}
+
+.site-tutorial__text {
+  color: var(--title);
+  font-size: 2rem;
+}
+
+/* Promoção */
+
+.promotion {
+  margin-top: 40px;
+}
+
+/* Publicidade */
+.publicity {
+  margin-top: 40px;
+}
+
+.publicity__title {
+  font-weight: bold;
+}

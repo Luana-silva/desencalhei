@@ -1,0 +1,1 @@
+export const SERVICE_URL = 'http://192.168.123.10:8080'

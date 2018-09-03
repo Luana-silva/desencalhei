@@ -1,0 +1,22 @@
+/* Footer */
+
+.footer {
+
+}
+
+.footer__terms {
+  padding: 20px;
+}
+
+.footer__title {
+  color: var(--title);
+}
+
+.footer__copyright {
+  padding: 4rem;
+  background: var(--title);
+}
+
+.footer__subtitle {
+  color: #FFF;
+}

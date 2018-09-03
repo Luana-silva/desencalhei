@@ -1,0 +1,375 @@
+<!-- Começo do Banner -->
+<section class="banner">
+  <div class="container-full">
+    <carousel>
+      <slide *ngFor="let banner of banners">
+        <a>
+          <img src="https://via.placeholder.com/1920x560" alt="first slide" style="display: block; width: 100%;">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>{{banner.name}}</h3>
+          </div>
+        </a>
+      </slide>
+    </carousel>
+  </div>
+</section>
+<!-- Fim do Banner -->
+
+<!-- Conteúdo destaque -->
+<!-- <section class="destaques">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+              <div class="destaques__header">
+                  <h2 class="">Últimos destaques</h2>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-3"> -->
+<!-- Destaque item -->
+<!--  <div class="destaque__item">
+      <figure class="destaque__figure">
+          <img class="destaque__image" src="https://via.placeholder.com/238x238" alt="">
+          <figcaption class="destaque__caption">
+              <h3 class="destaque__title">Maria Antonia</h3>
+              <h3 class="destaque__subtitle">Brincos de ouro</h3>
+          </figcaption>
+      </figure>
+      <div class="destaque__footer">
+          <span class="destaque__price">R$ 130,00</span>
+          <span class="destaque__favorito">
+              <i class="far fa-heart"></i>
+          </span>
+      </div>
+  </div>
+</div>
+
+</div>
+</div>
+</section>
+
+-->
+
+<section class="interests">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="interests__header">
+          <h2 class="title-section">O que mais te interessa?</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="interests__body">
+          <div class="interests__tag">
+            <ul class="tags">
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Camisa</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Vestido</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Arranjo floral</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Sapato</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Blazer</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Colar</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Taça de cristal</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Acessório de mesa</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Colete</span>
+                </button>
+              </li>
+              <li class="tag">
+                <button class="tag__btn">
+                  <span class="tag__item">Colar</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="interests__footer">
+          <button class="btn btn-round btn-salmon btn-center">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<div class="products products-offert">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="products__header">
+          <h2 class="title-section">Produtos em oferta</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                          R$ 130,00
+                      </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                              R$ 130,00
+                          </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                                  R$ 130,00
+                              </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                                      R$ 130,00
+                                  </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                                          R$ 130,00
+                                      </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                                              R$ 130,00
+                                          </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                                                  R$ 130,00
+                                              </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="product text-center product-offert">
+          <figure class="product__figure product-offert__figure">
+            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <figcaption class="product__caption product-offert__caption">
+              <h4 class="product__salesman">Maria Antonia</h4>
+              <h5 class="product__name">Brincos de ouro</h5>
+            </figcaption>
+          </figure>
+          <div class="product__fotter">
+            <button class="product__favorite">
+              <i class="far fa-heart fa-3x"></i>
+            </button>
+
+            <span class="product__price">
+                                                      R$ 130,00
+                                                  </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="products__footer products-offert__footer pull-right">
+          <button class="btn btn-round btn-blue">
+            Ver mais
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<section class="site-tutorial">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="site-tutorial__header">
+          <h2 class="title-section">
+            Como funciona?
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <div class="site-tutorial__logo">
+          <figure class="site-tutorial__figure">
+            <img class="site-tutorial__image" src="assets/images/noiva.png" alt="">
+            <figcaption class="site-tutorial__caption">
+              <p class="text-center site-tutorial__text">
+                Texto introdutório ao vídeo de
+                explicação sobre o
+                funcionamento do site, dos
+                processos de compra e venda
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <div class="site-tutorial__video">
+          <img class="img-responsive" src="https://via.placeholder.com/724x425" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="promotion">
+  <div class="container-fluid">
+    <img class="img-responsive" src="https://via.placeholder.com/1920x269">
+  </div>
+</section>
+
+<section class="publicity">
+  <div class="container">
+    <div class="publicity__header">
+      <h2 class="title-section publicity__title text-center">publicidade</h2>
+    </div>
+    <div class="publicity__image">
+      <img class="img-responsive" src="https://via.placeholder.com/1145x120">
+    </div>
+  </div>
+</section>
+<hr>
