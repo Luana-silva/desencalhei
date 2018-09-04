@@ -21,9 +21,9 @@ export class HomeService {
 
   banners(tipo): Observable<any> {
     const headers = new Headers();
-    //headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    //headers.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    //headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    headers.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Content-Type', 'application/json')
 
     return this.http.post(`${SERVICE_URL}/DesencalheiWs/rs/banner/search`, tipo,

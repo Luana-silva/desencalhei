@@ -18,7 +18,7 @@
               <p class="text-center">ou</p>
             </div>
             <div class="login__manual">
-              <form class="form__login">
+              <form class="form__login" [formGroup]="loginForm">
                 <div class="form">
                   <div class="form__logo">
                     <img class="form__image img-responsive" src="assets/images/icones/aliancas.png" alt="Alianças">
@@ -28,16 +28,16 @@
                     <h5 class="text-center login__manual-message-subtitle">Então faça seu login</h5>
                   </div>
                   <div class="form-group">
-                    <input type="email" class="input__form" placeholder="email">
+                    <input type="email" class="input__form" formControlName="email" placeholder="email">
                   </div>
 
                   <div class="form-group">
-                    <input type="senha" class="input__form" placeholder="senha">
+                    <input type="senha" class="input__form" formControlName="password" placeholder="senha">
                   </div>
                 </div>
 
-                <div class="form__footer">
-                  <button class="btn btn-round btn-large btn-salmon btn-center">Entrar</button>
+                <div class="form__footer">  
+                  <button (click)="login()" class="btn btn-round btn-large btn-salmon btn-center">Entrar</button>
                   <a [routerLink]="['/forgotpassword']" class="text-center form__forgotpassword">Esqueci a senha</a>
                 </div>
               </form>
