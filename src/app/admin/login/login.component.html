@@ -14,7 +14,7 @@
                   login com facebook
                 </i>
               </button>
-
+              {{logged()}}
               <p class="text-center">ou</p>
             </div>
             <div class="login__manual">
@@ -28,11 +28,11 @@
                     <h5 class="text-center login__manual-message-subtitle">Então faça seu login</h5>
                   </div>
                   <div class="form-group">
-                    <input type="email" class="input__form" formControlName="email" placeholder="email">
+                    <input type="email" class="input__form" formControlName="email" ngModel placeholder="email">
                   </div>
 
                   <div class="form-group">
-                    <input type="senha" class="input__form" formControlName="password" placeholder="senha">
+                    <input type="senha" class="input__form" formControlName="password" ngModel placeholder="senha">
                   </div>
                 </div>
 
