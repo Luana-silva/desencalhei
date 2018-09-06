@@ -1,7 +1,7 @@
 <div class="login">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-3 col-xs-offset-5">
+      <div class="col-sm-3 col-xs-offset-5 col-sm-3">
         <div class="login__item">
           <div class="login__header">
             <h3 class="title-section text-center">Entrar no Desencalhei</h3>
@@ -14,11 +14,10 @@
                   login com facebook
                 </i>
               </button>
-              {{logged()}}
               <p class="text-center">ou</p>
             </div>
             <div class="login__manual">
-              <form class="form__login" [formGroup]="loginForm">
+              <form class="form__login" [formGroup]="loginForm" novalidate>
                 <div class="form">
                   <div class="form__logo">
                     <img class="form__image img-responsive" src="assets/images/icones/aliancas.png" alt="Alianças">
