@@ -1,7 +1,6 @@
 /* Menu */
 .menu {
-  margin-top: 60px;
-  margin-bottom: 100px;       
+  margin-top: 45px;     
 }
 
 .menu__list {
@@ -31,6 +30,9 @@
 }
 
 .menu__item {
+  width: auto;
+  padding: 1px;
+  text-align: center;
 }
 
 
@@ -38,11 +40,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1rem;
 }
 
 .menu__item:hover .menu__sublist{
   height: 120px;
-  transition: .3s linear;
+  transition: .1s linear;
+}
+
+.menu__sublist:hover {
+  height: 120px;
+  transition: .1s linear;
 }
 
 .menu__item:hover .fa-menu {
@@ -77,11 +85,6 @@
   font-size: 1.7rem;
 }
 
-.image__logo {
-  width: 80px;
-  height: 80px;
-}
-
 .icon-header {
   fill: #d3b8bf;
   stroke: #d3b8bf;
@@ -90,6 +93,10 @@
 .menu__link {
   color: #566572;
   text-decoration: none;
+}
+
+.menu__arrow .menu__text {
+  font-size: 1.5rem;
 }
 
 .menu__link:hover .icon-header,
@@ -104,6 +111,7 @@
   fill: #566572;
   stroke: #566572;
 }
+
 
 @media(max-width: 1060px) {
 
@@ -171,6 +179,48 @@
   justify-content: flex-end;
 }
 
+.sac {
+
+}
+
+.header__icon {
+  width: 45px;
+}
+
+.home-login {
+  border-radius: 25px;
+  padding: 2px 15px;
+  height: 55px;
+  cursor: pointer;
+}
+
+.home-login:hover {
+  background: #4b5b69;
+}
+
+.icon-entrar {
+  fill: #4b5b69;
+}
+
+.home-login .cls-1 {
+  fill:  #4b5b69;
+}
+
+.home-login:hover .icon-entrar,
+.home-login:hover .cls-1 {
+  fill: #FFFFFF;
+}
+
+
+.home-login__image {
+  width: 70px;
+}
+
+.home-login__text {
+  font-size: 1.6rem;
+  line-height: 50px;
+}
+
 .header__icons {
   margin-right: 50px;
   width: 200px;
@@ -201,7 +251,7 @@
 }
 
 .logo__image {
-  width: 220px;
+  width: 190px;
 }
 
 .search {
@@ -214,7 +264,7 @@
 
 .search__item {
   width: 100%;
-  height: 45px;
+  height: 38px;
   display: flex;
   flex-wrap: nowrap;
   border-radius: 22px;

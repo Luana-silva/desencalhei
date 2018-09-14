@@ -1,55 +1,80 @@
 <!-- Começo do Banner -->
 <section class="banner">
   <div class="container-full">
-    <carousel>
+    <!-- <carousel>
       <slide *ngFor="let banner of banners">
         <a>
-          <img src="https://via.placeholder.com/1920x560" alt="first slide" style="display: block; width: 100%;">
+          <img [src]="getUrl(banner.id)" alt="first slide" style="display: block; width: 100%; margin: auto;">
           <div class="carousel-caption d-none d-md-block">
             <h3>{{banner.name}}</h3>
           </div>
         </a>
       </slide>
     </carousel>
+  -->
+
+  <ngu-carousel #myBanner [inputs]="carouselBanner" class="carousel-banner" [dataSource]="banners">
+    <ngu-tile class="carousel-banner__tile" *nguCarouselDef="let banners; let i = index" [ngStyle]="{ background: banners.colorImage}">
+      <img class="img-responsive" [src]="getUrl(banners.id)" alt="" style="width: 80%; max-height: 390px; margin: auto">
+    </ngu-tile>
+    <button NguCarouselPrev class="leftRs arrow arrow-block arrow-left"><img class="img-arrow" src="assets/images/icones/arrow-left.svg"></button>
+    <button NguCarouselNext class="rightRs arrow arrow-block arrow-right"><img class="img-arrow" src="assets/images/icones/right-arrow.svg"></button>
+
+    <ul class="dots" NguCarouselPoint>
+      <li class="dots__item" *ngFor="let i of myBanner.pointNumbers; let i = index" [class.active]="i==myBanner.activePoint" (click)="myBanner.moveTo(i)"
+        [style.background]="'url(' + banners[i] + ')'"></li>
+    </ul>
+  </ngu-carousel>
   </div>
 </section>
 <!-- Fim do Banner -->
-
+      
 <!-- Conteúdo destaque -->
-<!-- <section class="destaques">
+<section class="destaques">
   <div class="container">
       <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12">
               <div class="destaques__header">
-                  <h2 class="">Últimos destaques</h2>
+                  <h2 class="title-section">Últimos destaques</h2>
               </div>
           </div>
       </div>
-      <div class="row">
-          <div class="col-md-3"> -->
-<!-- Destaque item -->
-<!--  <div class="destaque__item">
-      <figure class="destaque__figure">
-          <img class="destaque__image" src="https://via.placeholder.com/238x238" alt="">
-          <figcaption class="destaque__caption">
-              <h3 class="destaque__title">Maria Antonia</h3>
-              <h3 class="destaque__subtitle">Brincos de ouro</h3>
-          </figcaption>
-      </figure>
-      <div class="destaque__footer">
-          <span class="destaque__price">R$ 130,00</span>
-          <span class="destaque__favorito">
-              <i class="far fa-heart"></i>
-          </span>
-      </div>
-  </div>
-</div>
 
-</div>
+      <div class="row">
+         <div class="col-md-12 col-xs-12 col-sm-12">
+          <div class="destaques__product">
+            <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="products">
+              <ngu-tile *nguCarouselDef="let products; let i = index">
+                <div class="product text-center product-offert">
+                  <figure class="product__figure product-offert__figure">
+                    <img class="img-responsive" [src]="products.image" alt="">
+                    <figcaption class="product__caption product-offert__caption">
+                      <h4 class="product__salesman">{{products.nameSalesman}}</h4>
+                      <h5 class="product__name">{{products.name}}</h5> 
+                    </figcaption>
+                  </figure>
+                  <div class="product__fotter">
+                    <button class="product__favorite" (click)="favotiteProducts(products)">
+                      <i class="fas fa-heart fa-3x"></i>
+                    </button>
+          
+                    <span class="product__price">
+                        {{products.price | currency: 'BRL': true}} 
+                    </span>
+                  </div>
+                </div>
+              </ngu-tile>
+              <button #arrowPrev NguCarouselPrev class="leftRs arrow arrow-circle arrow-circle-left" style="display: none;" [style.opacity]="myCarousel.isFirst ? 0.5:1"><img class="img-arrow" src="assets/images/icones/back.svg"></button>
+              <button #arrowNext NguCarouselNext class="rightRs arrow arrow-circle arrow-circle-right" style="display: none;" [style.opacity]="myCarousel.isLast ? 0.5:1"><img class="img-arrow" src="assets/images/icones/next.svg"></button>
+            </ngu-carousel>
+           </div>
+           <button class="leftRs arrow arrow-circle arrow-circle-left" (click)="handleArrowPrev()"><img class="img-arrow" src="assets/images/icones/back.svg"></button>
+           <button class="rightRs arrow arrow-circle arrow-circle-right" (click)="handleArrowNext()"><img class="img-arrow" src="assets/images/icones/next.svg"></button>
+         </div>
+      </div>
 </div>
 </section>
 
--->
 
 <section class="interests">
   <div class="container">
@@ -64,58 +89,14 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="interests__body">
           <div class="interests__tag">
-            <ul class="tags">
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Camisa</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Vestido</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Arranjo floral</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Sapato</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Blazer</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Colar</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Taça de cristal</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Acessório de mesa</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Colete</span>
-                </button>
-              </li>
-              <li class="tag">
-                <button class="tag__btn">
-                  <span class="tag__item">Colar</span>
-                </button>
-              </li>
-            </ul>
+            <div class="tags">
+
+              <span *ngFor="let tag of tags; let i = index" class="tag" (click)="selectedTags(tag)" (click)="tag.select = !tag.select"  
+              [ngClass]="tag.select ? 'favorited' : ''">
+                  <span class="tag__item">{{tag.name}}</span>
+              </span>
+
+            </div>
           </div>
         </div>
       </div>
@@ -123,7 +104,7 @@
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="interests__footer">
-          <button class="btn btn-round btn-salmon btn-center">Salvar</button>
+          <button class="btn btn-round btn-salmon btn-center" [disabled]="favTags.length <= 0" (click)="sendTags()">Salvar</button>
         </div>
       </div>
     </div>
@@ -142,175 +123,34 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3 col-sm-4 col-xs-6">
+      <div *ngFor="let product of products" class="col-md-3 col-sm-4 col-xs-6">
         <div class="product text-center product-offert">
           <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
+            <img class="img-responsive" [src]="product.image" alt="">
             <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
+              <h4 class="product__salesman">{{product.nameSalesman}}</h4>
+              <h5 class="product__name">{{product.name}}</h5>
             </figcaption>
           </figure>
           <div class="product__fotter">
-            <button class="product__favorite">
+            <button class="product__favorite" (click)="favotiteProducts(product)">
               <i class="far fa-heart fa-3x"></i>
             </button>
 
             <span class="product__price">
-                          R$ 130,00
-                      </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                              R$ 130,00
-                          </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                                  R$ 130,00
-                              </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                                      R$ 130,00
-                                  </span>
+                {{product.price | currency: 'BRL': true}}
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                                          R$ 130,00
-                                      </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                                              R$ 130,00
-                                          </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                                                  R$ 130,00
-                                              </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" src="https://via.placeholder.com/262x262" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">Maria Antonia</h4>
-              <h5 class="product__name">Brincos de ouro</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                                                      R$ 130,00
-                                                  </span>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="products__footer products-offert__footer pull-right">
           <button class="btn btn-round btn-blue">
             Ver mais
-            <i class="fas fa-arrow-right"></i>
+            <img class="img-arrow-sm" src="assets/images/icones/next.svg">
           </button>
         </div>
       </div>
@@ -357,8 +197,8 @@
 </section>
 
 <section class="promotion">
-  <div class="container-fluid">
-    <img class="img-responsive" src="https://via.placeholder.com/1920x269">
+  <div class="promotion__item">
+    <img class="img-responsive promotion__image" src="https://via.placeholder.com/1920x269">
   </div>
 </section>
 
