@@ -10,7 +10,7 @@ import { AuthService } from '../../shared/auth/auth.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
               private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -21,24 +21,37 @@ export class LoginComponent implements OnInit {
   		this.loginForm = this.fb.group({
   			email: this.fb.control('', [Validators.required, Validators.email]),
   			password: this.fb.control('', [Validators.required])
-  		})
+  		}, {updateOn: true})
   }
 
   login() {
-    this.authService.login(this.loginForm.value.email,
-                          this.loginForm.value.password)
-                  .subscribe(
-                      user => {
-                    console.log(user);
-                    //this.router.navigate(['/'])
-                  }, 
-                error => {
-                  alert(`Deu um erro ${error}`)
-                })
+    if(this.loginForm.valid) {
+      this.authService.login(this.loginForm.value.email,
+        this.loginForm.value.password)
+        .subscribe(
+            user => {
+         // console.log(user);
 
+          if(user.success) {
+          // this.router.navigate(['/'])
+          } else {
+            console.log('Usuário inválido')
+          }
+        },
+          response => {
+          alert(response.error.message)
+        })
+    } else {
+      console.log('O formulário está inválido, verifique todos os campos');
+    }
   }
 
   logged() {
     return this.authService.isLoggedIn();
+  }
+
+  isUser() {
+    console.log(this.authService.isUser());
+    return this.authService.isUser();
   }
 }

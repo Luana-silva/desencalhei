@@ -1,0 +1,164 @@
+<div class="categories">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-ls-12">
+            <div class="categories__header">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="breadcrumb-container">
+                    <span class="breadcrumb__item" [routerLink]="['/produtos/todos']" style="cursor: pointer">Produtos/Todos</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="order-container">
+                    <span class="order__name">Ordenar por</span>
+                      <div class="order__select">
+                        <select class="select-chosen" (change)="setOrder($event)" #inputTag>
+                          <option class="chosen-item" value="id" selected>Mais recentes</option>
+                          <option class="chosen-item" value="localidade">Localidade</option>
+                          <option class="chosen-item" value="price">Preço</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-lg-12">
+        <div class="feed-top">
+          <div class="row">
+            <div class="col-xs-4 col-md-4 col-lg-4">
+              <div class="feed-qtd">
+                <p class="feed-qtd__text">{{products.length}} produtos encontrados</p>
+                <p class="text-muted filtro-text">
+                    <label for="filtrar">
+                      Filtrar
+                    </label>
+                    </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="feed-products">
+      <div class="row" style="overflow: hidden">
+
+        <input type="checkbox" id="filtrar" class="filtrar" style="display: none;">
+
+        <div class="col-md-3 col-xs-12 col-lg-3 filter-sidebar-bg">
+          <div class="filter-sidebar">
+             <div class="product-filter" [hidden]="true">
+               <div class="product-filter__categories">
+                 <h4 class="product-filter__title">Categorias</h4>
+
+                 <ul class="filter-items">
+                   <li *ngFor="let categoria of categorias" class="filter-item" (click)="categoria.select = !categoria.select" [ngClass]="categoria.select ? 'selected' : ''">{{categoria.name}}</li>
+                 </ul>
+               </div>
+             </div>
+
+             <div class="product-filter">
+              <div class="product-filter__categories">
+                <h4 class="product-filter__title">Preço</h4>
+
+                <div class="product-filter__range">
+                   <div class="price-range">
+                     <span class="price-range__label">De</span>
+                     <div class="price-range__field">
+                        <span class="price-range__currency">R$</span>
+                        <input type="text" class="price-range__input" #inputDe (input)="false">
+                      </div>
+                   </div>
+                   <div class="price-range">
+                    <span class="price-range__label">Até</span>
+                    <div class="price-range__field">
+                      <span class="price-range__currency">R$</span>
+                      <input type="text" class="price-range__input" #inputAte>
+                    </div>
+                  </div>
+                  <div class="price-range__button">
+                    <button class="btn-small btn-round btn-blue">Ok</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-filter">
+              <div class="product-filter__categories">
+                <h4 class="product-filter__title">Marcas</h4>
+
+                <ul class="filter-items">
+                  <li *ngFor="let marca of marcas" class="filter-item" (click)="marca.select = !marca.select" [ngClass]="marca.select ? 'selected' : ''">{{marca.name}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="product-filter">
+              <div class="product-filter__categories">
+                <h4 class="product-filter__title">Estado</h4>
+
+                <ul class="filter-items">
+                  <li *ngFor="let estado of estados" class="filter-item" (click)="estado.select = !estado.select" [ngClass]="estado.select ? 'selected' : ''">{{estado.name}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="product-filter">
+              <div class="product-filter__categories">
+                <h4 class="product-filter__title">Frete</h4>
+
+                <ul class="filter-items">
+                  <li *ngFor="let frete of fretes" class="filter-item" (click)="frete.select = !frete.select" [ngClass]="frete.select ? 'selected' : ''">{{frete.name}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-9 col-xs-12">
+          <div class="catalogue">
+            <div *ngFor="let product of products | paginate: config | orderBy: order:reverse: 'case-insensitive'" class="col-lg-4 col-md-4 col-xs-6">
+              <app-product [product]="product"></app-product>
+            </div>
+          </div>
+          <pagination-template #p="paginationApi"
+                     [id]="config.id"
+                     (pageChange)="config.currentPage = $event"
+                     autoHide="true"
+                     responsive="true"
+                     maxSize="8">
+
+
+                  <div class="custom-pagination">
+                      <div class="pagination-previous" [class.disabled]="p.isFirstPage()" [hidden]="p.isFirstPage()">
+                          <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> < Anterior </a>
+                      </div>
+
+                      <div *ngFor="let page of p.pages" class="pagination-dots" [class.current]="p.getCurrent() === page.value">
+                          <a (click)="p.setCurrent(page.value)" class="pagination-dots-link" *ngIf="p.getCurrent() !== page.value">
+                              <span class="pagination-item">{{ page.label }}</span>
+                          </a>
+                          <div *ngIf="p.getCurrent() === page.value" class="pagination-dots-link">
+                              <span class="pagination-item">{{ page.label }}</span>
+                          </div>
+                      </div>
+
+                      <div class="pagination-next" [class.disabled]="p.isLastPage()" [hidden]="p.isLastPage()">
+                          <a *ngIf="!p.isLastPage()" (click)="p.next()"> Próximo > </a>
+                      </div>
+                  </div>
+
+        </pagination-template>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <app-publicity></app-publicity>
+</div>
+

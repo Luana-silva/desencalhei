@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AuthService } from '../shared/auth/auth.service'
-import { AdminRoutingModule } from './admin-routing.module';
+import { UserRoutingModule } from './user-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
@@ -15,9 +15,9 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    UserRoutingModule
   ],
   declarations: [LoginComponent, ForgotpasswordComponent],
   providers: [AuthService]
 })
-export class AdminModule { }
+export class UserModule { }

@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HomeService } from './home.service'
-import { SERVICE_URL } from '../../utils/constants'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Constants } from '../../utils/constants'
 import { NguCarouselConfig } from '@ngu/carousel';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../shared/auth/auth.service'
 
 @Component({
   selector: 'app-home',
@@ -13,17 +16,19 @@ export class HomeComponent implements OnInit {
   @ViewChild('arrowPrev') arrowPrevEl: any
   @ViewChild('arrowNext') arrowNextEl: any
 
+  loading: boolean = false;
 
-  products: any[] = [
-    { id: 1, nameSalesman: 'Vitoria', name: 'Calça mom jeans', price: '75', image: 'https://res-5.cloudinary.com/enjoei/image/upload/c_fill,fl_lossy.progressive,h_294,q_60,w_276/auxqzac8bypp5mogxxt7.jpg'},
-    { id: 2, nameSalesman: 'Brenda', name: 'Sapatilha', price: '232', image: 'https://res-3.cloudinary.com/enjoei/image/upload/c_fill,fl_lossy.progressive,h_294,q_60,w_276/yygi2vn9ulugnx7v7cd6.jpg'},
-    { id: 3, nameSalesman: 'Brenda', name: 'Oxford glitter', price: '120', image: 'https://res-3.cloudinary.com/enjoei/image/upload/c_fill,fl_lossy.progressive,h_294,q_60,w_276/nldnkysmmho9gd212hxr.jpg'},
-    { id: 4, nameSalesman: 'Sérgio', name: 'Tênis nike branco', price: '140', image: 'https://res-4.cloudinary.com/enjoei/image/upload/c_fill,fl_lossy.progressive,h_294,q_60,w_276/olr2vhkgofewdwiiqxdq.jpg'},
-    { id: 5, nameSalesman: 'Bruna', name: 'Moleton preto', price: '75', image: 'https://res-2.cloudinary.com/enjoei/image/upload/c_fill,fl_lossy.progressive,h_294,q_60,w_276/jr8sgb2y3ngarn3bcqan.jpg'},
-    { id: 6, nameSalesman: 'Eloisa', name: 'Jaqueta melida', price: '280', image: 'https://res-4.cloudinary.com/enjoei/image/upload/a_0,c_fill,fl_lossy.progressive,g_center,h_294,q_70,w_276/zll6xelagjwrzpdldyim.jpg'},
-    { id: 7, nameSalesman: 'Maria', name: 'Saia xadrez', price: '59', image: 'https://res-5.cloudinary.com/enjoei/image/upload/a_0,c_fill,fl_lossy.progressive,g_center,h_294,q_70,w_276/tm5jwebncm7ez0hjksb3.jpg'},
-    { id: 8, nameSalesman: 'Daniela', name: 'Vestidinho verão', price: '55', image: 'https://res-3.cloudinary.com/enjoei/image/upload/a_0,c_fill,fl_lossy.progressive,g_center,h_294,q_70,w_276/kdq0cje1ufhykyh1vqyi.jpg'}
-  ];
+  categories: any[] = [];
+  products: any[] = [];
+
+  productsSaleOff: any[] = [];
+
+  preferences: any[] = [];
+
+  banners: any[] = [];
+  home = [];
+
+  favTags: any[] = []
 
 
   public carouselBanner: NguCarouselConfig = {
@@ -51,53 +56,35 @@ export class HomeComponent implements OnInit {
     load: 2,
     velocity: 0,
     touch: true,
-    easing: 'cubic-bezier(0, 0, 0.2, 1)'
+    easing: 'cubic-bezier(0, 0, 0.2, 1)',
+    loop: true
   };
-  
-  
-  banners: any[] = [];
 
-  tags: any[] = [
-    { id: 1, name: 'Camisa', select: false },
-    { id: 2, name: 'Vestido', select: false},
-    { id: 3, name: 'Arranjo floral', select: false },
-    { id: 4, name: 'Sapato', select: false},
-    { id: 5, name: 'Blazer', select: false},
-    { id: 6, name: 'Colar', select: false},
-    { id: 7, name: 'Taça de cristal', select: false},
-    { id: 8, name: 'Acessório de mesa', select: false},
-    { id: 9, name: 'Colete', select: false},
-    { id: 10, name: 'Colar', select: false},
-    { id: 11, name: 'Blazer', select: false},
-    { id: 12, name: 'Taça de cristal', select: false},
-    { id: 13, name: 'Camisa', select: false},
-    { id: 14, name: 'Noiva', select: false},
-    { id: 15, name: 'Noivo', select: false},
-    { id: 16, name: 'Bolo', select: false},
-    { id: 17, name: 'Tapete', select: false},
-    { id: 18, name: 'Flores', select: false},
-    { id: 19, name: 'Vasos', select: false},
-    { id: 20, name: 'Talheres', select: false},
-    { id: 21, name: 'Convidados', select: false},
-    { id: 22, name: 'Bolo', select: false},
-    { id: 23, name: 'Docinhos', select: false},
-    { id: 24, name: 'Bebida', select: false},
-    { id: 25, name: 'Buquê', select: false}
-  ]
-
-  favTags: any[] = []
-  status: boolean = false;
 
   //SERVICE_URL = SERVICE_URL
-  constructor(private homeService: HomeService) {
+  constructor(private homeService: HomeService, private authService: AuthService, public  router: Router) {
 
   }
- 
+
   ngOnInit() {
-    
+
+    this.homeService.getCategories()
+      .subscribe(categories => this.categories = categories)
+
+
     this.homeService.banners({type: 'DESKTOP'})
       .subscribe(banners => this.banners = banners)
 
+    this.homeService.getHome()
+      .subscribe(home => {
+        this.home = home['data']
+        this.products = home['data'].listFeatured;
+        this.productsSaleOff = home['data'].listSaleOff;
+       }
+      )
+
+      this.homeService.getPreferences()
+        .subscribe(preferences => this.preferences = preferences['data'])
   }
 
 
@@ -109,30 +96,42 @@ export class HomeComponent implements OnInit {
     this.arrowNextEl.nativeElement.click();
   }
 
+  logged() {
+    return this.authService.isLoggedIn();
+  }
 
-  selectedTags(tag) {
+  selectTags(tag) {
     let isExisting = !this.favTags.some(t => t.id == tag.id);
-   
+
     if(isExisting) {
       this.favTags.push(tag);
     } else {
       this.favTags = this.favTags.filter(t => t.id != tag.id)
-    }
+    } 
 
   }
-  
+
   sendTags() {
     //console.log(this.favTags)
     //localStorage.setItem('tags',  JSON.stringify(this.favTags))
-    console.log(this.tags)
+    //console.log(this.tags)
+    console.log(this.favTags)
+    //this.homeService.sendTags(this.tags);
+    this.loading = true;
+
+    if(!this.logged()) {
+      setTimeout(()=> {
+        this.router.navigate(['/login'])
+      }, 1000)
+    }
   }
-  
+
   getUrl(idBanner: string): string {
-    let url = SERVICE_URL + '/DesencalheiWs/rs/banner/bannerImage/' + idBanner + '/DESKTOP';
+    let url = `${Constants.SERVICE_URL}${Constants.SERVICE_PROJECT}banner/bannerImage/${idBanner}/DESKTOP`;
     return url;
   }
 
-  favotiteProducts(product) {
+  favoriteProducts(product) {
     console.log(product);
   }
 }

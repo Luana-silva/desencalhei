@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --corcinza: #ececed;
+    --corazul: #8da8b9;
+    --corsalmao: #d3b8bf;
+    --cinzadestaques: #ededed;
+    --title: #4b5b69;
+    --tags: #d6d6d6;
+  }
+
+  body {
+    font-family: 'Comfortaa', cursive;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  .btn {
+    display: block;
+    width: 170px;
+    height: 40px;
+    color: #FFF;
+    font-size: 1.7rem;
+    font-family: Tahoma;
+    outline: none;
+  }
+
+  .btn-round {
+    border-radius: 25px;
+  }
+
+  .btn-blue {
+    background: #4b5b69;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .btn-salmon {
+    background: #f4a2a2;
+  }
+
+  .btn-center {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+  }
+
+  .title-section {
+    color: var(--title);
+    font-size: 2.1rem;
+    margin-bottom: 15px;
+  }

@@ -1,0 +1,17 @@
+<div class="product text-center product-offert">
+    <figure class="product__figure product-offert__figure" [title]="product.name">
+      <img class="product__image img-responsive" [src]="getUrlProduct(product.id)" alt="">
+      <figcaption class="product__caption product-offert__caption">
+       <h4 class="product__salesman">{{product.nameObj}}</h4>
+        <h5 class="product__name">{{product.name}}</h5>
+      </figcaption>
+    </figure>
+    <div class="product__fotter">
+      <button class="product__favorite">
+        <i class="far fa-heart fa-3x"></i>
+      </button>
+      <span class="product__price">
+          {{product.price | currency: 'BRL': true}}
+      </span>
+    </div>
+  </div>

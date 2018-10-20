@@ -6,15 +6,13 @@
           <div class="login__header">
             <h3 class="title-section text-center">Entrar no Desencalhei</h3>
           </div>
-
           <div class="login__body">
             <div class="login__social">
-              <button class="btn btn-round btn-center btn-face btn--large-fb">
-                <i class="fab fa-facebook-f">
+              <button class="btn btn-round btn-center btn-face btn--large-fb" [routerLink]="['/']">
+                <i class="fab fa-facebook-f"></i>
                   login com facebook
-                </i>
               </button>
-              <p class="text-center">ou</p>
+              <p class="text-center text-login">ou</p>
             </div>
             <div class="login__manual">
               <form class="form__login" [formGroup]="loginForm" novalidate>
@@ -27,11 +25,12 @@
                     <h5 class="text-center login__manual-message-subtitle">Então faça seu login</h5>
                   </div>
                   <div class="form-group">
-                    <input type="email" class="input__form" formControlName="email" placeholder="email">
+                    <input type="email" class="input__form" formControlName="email" placeholder="email" [class.error]="!loginForm.get('email').valid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                    <small class="text-muteded" *ngIf="!loginForm.get('email').valid && (loginForm.get('email').dirty || loginForm.get('email').touched)">Informe um Email</small>
                   </div>
 
                   <div class="form-group">
-                    <input type="senha" class="input__form" formControlName="password" placeholder="senha">
+                    <input type="password" class="input__form" formControlName="password" placeholder="senha" [class.error]="!loginForm.get('password').valid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
                   </div>
                 </div>
 

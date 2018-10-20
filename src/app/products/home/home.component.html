@@ -1,21 +1,10 @@
 <!-- Começo do Banner -->
 <section class="banner">
   <div class="container-full">
-    <!-- <carousel>
-      <slide *ngFor="let banner of banners">
-        <a>
-          <img [src]="getUrl(banner.id)" alt="first slide" style="display: block; width: 100%; margin: auto;">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>{{banner.name}}</h3>
-          </div>
-        </a>
-      </slide>
-    </carousel>
-  -->
 
   <ngu-carousel #myBanner [inputs]="carouselBanner" class="carousel-banner" [dataSource]="banners">
     <ngu-tile class="carousel-banner__tile" *nguCarouselDef="let banners; let i = index" [ngStyle]="{ background: banners.colorImage}">
-      <img class="img-responsive" [src]="getUrl(banners.id)" alt="" style="width: 80%; max-height: 390px; margin: auto">
+      <img class="img-responsive" [src]="getUrl(banners.id)" alt="" style="width: 80%; max-height: 400px; margin: auto">
     </ngu-tile>
     <button NguCarouselPrev class="leftRs arrow arrow-block arrow-left"><img class="img-arrow" src="assets/images/icones/arrow-left.svg"></button>
     <button NguCarouselNext class="rightRs arrow arrow-block arrow-right"><img class="img-arrow" src="assets/images/icones/right-arrow.svg"></button>
@@ -28,7 +17,7 @@
   </div>
 </section>
 <!-- Fim do Banner -->
-      
+
 <!-- Conteúdo destaque -->
 <section class="destaques">
   <div class="container">
@@ -39,33 +28,15 @@
               </div>
           </div>
       </div>
-
       <div class="row">
          <div class="col-md-12 col-xs-12 col-sm-12">
           <div class="destaques__product">
             <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="products">
               <ngu-tile *nguCarouselDef="let products; let i = index">
-                <div class="product text-center product-offert">
-                  <figure class="product__figure product-offert__figure">
-                    <img class="img-responsive" [src]="products.image" alt="">
-                    <figcaption class="product__caption product-offert__caption">
-                      <h4 class="product__salesman">{{products.nameSalesman}}</h4>
-                      <h5 class="product__name">{{products.name}}</h5> 
-                    </figcaption>
-                  </figure>
-                  <div class="product__fotter">
-                    <button class="product__favorite" (click)="favotiteProducts(products)">
-                      <i class="fas fa-heart fa-3x"></i>
-                    </button>
-          
-                    <span class="product__price">
-                        {{products.price | currency: 'BRL': true}} 
-                    </span>
-                  </div>
-                </div>
+                  <app-product  [product]="products"></app-product>
               </ngu-tile>
-              <button #arrowPrev NguCarouselPrev class="leftRs arrow arrow-circle arrow-circle-left" style="display: none;" [style.opacity]="myCarousel.isFirst ? 0.5:1"><img class="img-arrow" src="assets/images/icones/back.svg"></button>
-              <button #arrowNext NguCarouselNext class="rightRs arrow arrow-circle arrow-circle-right" style="display: none;" [style.opacity]="myCarousel.isLast ? 0.5:1"><img class="img-arrow" src="assets/images/icones/next.svg"></button>
+              <button #arrowPrev NguCarouselPrev class="leftRs arrow arrow-circle arrow-circle-left" style="display: none;"><img class="img-arrow" src="assets/images/icones/back.svg"></button>
+              <button #arrowNext NguCarouselNext class="rightRs arrow arrow-circle arrow-circle-right" style="display: none;"><img class="img-arrow" src="assets/images/icones/next.svg"></button>
             </ngu-carousel>
            </div>
            <button class="leftRs arrow arrow-circle arrow-circle-left" (click)="handleArrowPrev()"><img class="img-arrow" src="assets/images/icones/back.svg"></button>
@@ -91,9 +62,9 @@
           <div class="interests__tag">
             <div class="tags">
 
-              <span *ngFor="let tag of tags; let i = index" class="tag" (click)="selectedTags(tag)" (click)="tag.select = !tag.select"  
-              [ngClass]="tag.select ? 'favorited' : ''">
-                  <span class="tag__item">{{tag.name}}</span>
+              <span *ngFor="let preference of preferences; let i = index" class="tag" (click)="selectTags(preference)" (click)="preference.selected = !preference.selected"
+              [ngClass]="preference.selected ? 'favorited' : ''">
+                  <span class="tag__item">{{preference.name}}</span>
               </span>
 
             </div>
@@ -104,7 +75,25 @@
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="interests__footer">
-          <button class="btn btn-round btn-salmon btn-center" [disabled]="favTags.length <= 0" (click)="sendTags()">Salvar</button>
+          <button class="btn btn-round btn-salmon btn-center" [disabled]="favTags.length <= 0" (click)="sendTags()" style="outline: none">
+              <span class="btn__label" [hidden]="loading">
+                Salvar
+              </span>
+              <div class="loading" [hidden]="!loading">
+                  <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                <path fill="#FFF" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+                  <animateTransform attributeType="xml"
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 25 25"
+                    to="360 25 25"
+                    dur="0.6s"
+                    repeatCount="indefinite"/>
+                  </path>
+                </svg>
+              </div>
+          </button>
         </div>
       </div>
     </div>
@@ -123,35 +112,18 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let product of products" class="col-md-3 col-sm-4 col-xs-6">
-        <div class="product text-center product-offert">
-          <figure class="product__figure product-offert__figure">
-            <img class="img-responsive" [src]="product.image" alt="">
-            <figcaption class="product__caption product-offert__caption">
-              <h4 class="product__salesman">{{product.nameSalesman}}</h4>
-              <h5 class="product__name">{{product.name}}</h5>
-            </figcaption>
-          </figure>
-          <div class="product__fotter">
-            <button class="product__favorite" (click)="favotiteProducts(product)">
-              <i class="far fa-heart fa-3x"></i>
-            </button>
-
-            <span class="product__price">
-                {{product.price | currency: 'BRL': true}}
-            </span>
-          </div>
+        <div  *ngFor="let product of productsSaleOff" class="col-md-3 col-sm-6 col-xs-6">
+          <app-product  [product]="product"></app-product>
         </div>
-      </div>
-
     </div>
+
     <div class="row">
       <div class="col-md-12">
         <div class="products__footer products-offert__footer pull-right">
-          <button class="btn btn-round btn-blue">
+          <a [routerLink]="['/produtos', 'todos']" class="btn btn-round btn-blue">
             Ver mais
             <img class="img-arrow-sm" src="assets/images/icones/next.svg">
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -201,15 +173,5 @@
     <img class="img-responsive promotion__image" src="https://via.placeholder.com/1920x269">
   </div>
 </section>
-
-<section class="publicity">
-  <div class="container">
-    <div class="publicity__header">
-      <h2 class="title-section publicity__title text-center">publicidade</h2>
-    </div>
-    <div class="publicity__image">
-      <img class="img-responsive" src="https://via.placeholder.com/1145x120">
-    </div>
-  </div>
-</section>
+<app-publicity></app-publicity>
 <hr>
